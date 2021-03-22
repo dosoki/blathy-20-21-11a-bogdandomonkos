@@ -1,0 +1,36 @@
+﻿<Window x:Class="doma.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:doma"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:MainVM x:Key="VM"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource ResourceKey=VM}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Path=Length_SearchWord, StringFormat=Karakterek száma: 0 db}" Grid.Column="0" TextAlignment="Center"/>
+            <TextBlock Text="{Binding Path=Length_Elements, StringFormat=0 db}" Grid.Column="1" TextAlignment="Center"/>
+        </Grid>
+        
+        <TextBox Text="{Binding Path=SearchWord, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1"/>
+        <Button Content="Add" Command="{Binding Path=CMD_Add}" Grid.Row="2"/>
+        <ListBox ItemsSource="{Binding Path=Elements}" Grid.Row="3"/>
+    </Grid>
+</Window>
